@@ -1,0 +1,44 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Tapchi.Modules.TapchiDataModel.Models.ChuDe>
+
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+
+<div id="Item-@Dnn.ModuleContext.ModuleId">
+    <div>
+        <fieldset>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="dnnFormItem">
+                <div><label for="itemName">Tên chủ đề</label></div>
+                @Html.TextBoxFor(m => m.Ten)
+                @Html.ValidationMessageFor(m => m.Ten, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Mô tả</label></div>
+                @Html.TextAreaFor(m => m.MoTa)
+                @Html.ValidationMessageFor(m => m.MoTa, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Thứ tự</label></div>
+                @Html.TextBoxFor(m => m.ThuTu)
+                @Html.ValidationMessageFor(m => m.ThuTu, "", new { @class = "text-danger" })
+            </div>
+          
+        </fieldset>
+    </div>
+    <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
+    <a id="cancelEdit" href="#" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
+</div>
+
+<script type="text/javascript">
+    /*globals jQuery, window, Sys */
+    (function($, Sys) {
+        $(function() {
+            $('#cancelEdit').click(function() { dnnModal.closePopUp(false); });
+            dnnEditBasicSettings();
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+                dnnEditBasicSettings();
+            });
+        });
+
+    }(jQuery, window.Sys));
+</script>

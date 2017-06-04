@@ -1,0 +1,39 @@
+﻿IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}TapChi_TacGia]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}TapChi_TacGia] 
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}TapChi_ChuDe]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}TapChi_ChuDe] 
+GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}TapChi]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}TapChi] 
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}TacGia]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}TacGia] 
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}ChuDe]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}ChuDe] 
+GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DanhMuc]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}DanhMuc] 
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}TinTuc]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}TinTuc] 
+GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}TheLoaiTinTuc]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}TheLoaiTinTuc] 
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}GopY]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}GopY]
+GO
+

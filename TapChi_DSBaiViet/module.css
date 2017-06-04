@@ -1,0 +1,52 @@
+.item-blue {
+    background-color: #01509b;
+  
+    margin: 10px;
+    color: #fff;
+    width: 20%;
+}
+.item-blue a, .item-blue a:hover, .item-blue a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+.item-content-container {
+    padding: 8px;
+   
+}
+.item-content {
+    height: 140px;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.item-author {
+    position: relative;
+    height: 40px;
+    color: #6191bf;
+    font-size: 13px;
+}
+
+.item-author > div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.item-danhmuc-views {
+    background-color: #03c4cb;
+    padding: 8px;
+    font-size: 11px;
+}
+
+.item-danhmuc {
+    float: left;
+}
+
+.item-view {
+    float: right;
+}
+
+.slick-prev::before, .slick-next::before {
+    color: grey;
+}
+

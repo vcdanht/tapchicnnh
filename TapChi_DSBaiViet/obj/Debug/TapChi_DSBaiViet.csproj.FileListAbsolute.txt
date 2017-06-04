@@ -1,0 +1,8 @@
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSBaiViet.dll.config
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSBaiViet.dll
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSBaiViet.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSBaiViet\obj\Debug\TapChi.Modules.TapChi_DSBaiViet.App_LocalResources.Settings.resources
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSBaiViet\obj\Debug\TapChi_DSBaiViet.csproj.GenerateResource.Cache
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSBaiViet\obj\Debug\TapChi_DSBaiViet.dll
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSBaiViet\obj\Debug\TapChi_DSBaiViet.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSBaiViet\obj\Debug\TapChi_DSBaiViet.csprojResolveAssemblyReference.cache

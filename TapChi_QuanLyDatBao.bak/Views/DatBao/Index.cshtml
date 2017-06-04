@@ -1,0 +1,88 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Tapchi.Modules.TapchiDataModel.Models.DatBao>>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Web.Client.ClientResourceManagement
+@{
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/js/jquery.dataTables.min.js");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/js/jquery.dataTables.css");
+
+}
+<div id="Items-@Dnn.ModuleContext.ModuleId">
+    @if (Model.Count() == 0)
+    {
+        <p>Không tìm thấy dữ liệu</p>
+    }
+    else
+    {
+        <table class="table paging">
+            <thead>
+            <th>
+                ID
+            </th>            
+            <th>
+                Họ tên Khách hàng
+            </th>
+            <th>
+                Giới tính
+            </th>
+            <th>
+                Đơn vị công tác
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Điện thoại
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Kỳ hạn
+            </th>
+            <th>
+            </th>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.DatBaoId</td>                   
+                    <td>@item.Ten</td>
+                    <td>@item.GioiTinh</td>
+                    <td>@item.DonViCongtac</td>
+                    <td>@item.DiaChi</td>
+                    <td>@item.DienThoai</td>
+                    <td>@item.Email</td>
+                    <td>@item.KyHan</td>
+                    <td>
+                        <div>
+                            <a href="@Url.Action("Edit", "TapChi", new {ctl = "Edit", itemId = item.DatBaoId})">Edit</a>                            
+                        </div>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    }
+</div>
+<script type="text/javascript">
+    /*globals jQuery, window, Sys */
+    (function($, Sys) {
+       
+        $('.table.paging').DataTable(
+            {
+                aoColumns: [
+                    { "bSortable": true, "bVisible": false },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": false }
+                ],
+                "order": [[1, "desc"]]
+            });
+    }(jQuery, window.Sys));
+</script>

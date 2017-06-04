@@ -1,0 +1,8 @@
+C:\inetpub\wwwroot\dnn\bin\Tapchi_QuanLyChuDe.dll.config
+C:\inetpub\wwwroot\dnn\bin\Tapchi_QuanLyChuDe.dll
+C:\inetpub\wwwroot\dnn\bin\Tapchi_QuanLyChuDe.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\Tapchi_QuanLyChuDe\obj\Debug\Tapchi_QuanLyChuDe.csprojResolveAssemblyReference.cache
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\Tapchi_QuanLyChuDe\obj\Debug\Tapchi.Modules.Tapchi_QuanLyChuDe.App_LocalResources.Settings.resources
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\Tapchi_QuanLyChuDe\obj\Debug\Tapchi_QuanLyChuDe.csproj.GenerateResource.Cache
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\Tapchi_QuanLyChuDe\obj\Debug\Tapchi_QuanLyChuDe.dll
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\Tapchi_QuanLyChuDe\obj\Debug\Tapchi_QuanLyChuDe.pdb

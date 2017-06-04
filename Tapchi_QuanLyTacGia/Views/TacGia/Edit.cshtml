@@ -1,0 +1,59 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Tapchi.Modules.TapchiDataModel.Models.TacGia>
+
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+
+<div id="Item-@Dnn.ModuleContext.ModuleId">
+    <div>
+        <fieldset>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            
+            <div class="dnnFormItem">
+                <div><label for="ButDanh">Bút danh</label></div>
+                @Html.TextBoxFor(m => m.ButDanh)
+                @Html.ValidationMessageFor(m => m.ButDanh, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="Ten">Tên thật</label></div>
+                @Html.TextBoxFor(m => m.Ten)
+                @Html.ValidationMessageFor(m => m.Ten, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="DiaChi">Địa chỉ</label></div>
+                @Html.TextBoxFor(m => m.DiaChi)
+                @Html.ValidationMessageFor(m => m.DiaChi, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="Phone">Điện thoại</label></div>
+                @Html.TextBoxFor(m => m.Phone)
+                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="Email">Email</label></div>
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </fieldset>
+    </div>
+    <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
+    <a id="cancelEdit" href="#" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
+</div>
+
+<script type="text/javascript">
+    /*globals jQuery, window, Sys */
+    (function($, Sys) {
+        function dnnEditBasicSettings() {
+            $('#dnnEditBasicSettings').dnnPanels();
+            $('#dnnEditBasicSettings .dnnFormExpandContent a').dnnExpandAll({ expandText: '@Dnn.LocalizeString("ExpandAll")', collapseText: '@Dnn.LocalizeString("CollapseAll")', targetArea: '#dnnEditBasicSettings' });
+        }
+
+        $(function() {
+            $('#cancelEdit').click(function() { dnnModal.closePopUp(false); });
+            dnnEditBasicSettings();
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+                dnnEditBasicSettings();
+            });
+        });
+
+    }(jQuery, window.Sys));
+</script>

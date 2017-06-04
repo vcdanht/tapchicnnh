@@ -1,0 +1,8 @@
+C:\inetpub\wwwroot\dnn\bin\TapChi_QuanLyTheLoaiTinTuc.dll.config
+C:\inetpub\wwwroot\dnn\bin\TapChi_QuanLyTheLoaiTinTuc.dll
+C:\inetpub\wwwroot\dnn\bin\TapChi_QuanLyTheLoaiTinTuc.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_QuanLyTheLoaiTinTuc\obj\Debug\TapChi.Modules.TapChi_QuanLyTheLoaiTinTuc.App_LocalResources.Settings.resources
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_QuanLyTheLoaiTinTuc\obj\Debug\TapChi_QuanLyTheLoaiTinTuc.csproj.GenerateResource.Cache
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_QuanLyTheLoaiTinTuc\obj\Debug\TapChi_QuanLyTheLoaiTinTuc.dll
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_QuanLyTheLoaiTinTuc\obj\Debug\TapChi_QuanLyTheLoaiTinTuc.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_QuanLyTheLoaiTinTuc\obj\Debug\TapChi_QuanLyTheLoaiTinTuc.csprojResolveAssemblyReference.cache

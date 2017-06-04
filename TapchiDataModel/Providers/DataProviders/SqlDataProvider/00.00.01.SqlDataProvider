@@ -1,0 +1,257 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/* QUAN LY TAC GIA */
+CREATE TABLE {databaseOwner}[{objectQualifier}TacGia](
+	[TacGiaID] [int] IDENTITY(1,1) NOT NULL,
+	[ButDanh] [nvarchar](max) NULL,
+	[Ten] [nvarchar](max) NULL,
+	[DiaChi] [nvarchar](max) NULL,
+	[Email] [nvarchar](50) NULL,
+	[Phone] [nvarchar](50) NULL,
+	[ThuTu] [int] NULL,
+	[UserCreated] [nvarchar](100) NULL,
+	[DateCreated] [datetime] NULL,
+	[UserModified] [nvarchar](100) NULL,
+	[DateModified] [datetime] NULL,
+	[Status] [int] NULL,
+ CONSTRAINT [PK_TacGia] PRIMARY KEY CLUSTERED 
+(
+	[TacGiaID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+/* QUAN LY DANH MUC */
+CREATE TABLE {databaseOwner}[{objectQualifier}DanhMuc](
+	[DanhMucID] [int] IDENTITY(1,1) NOT NULL,
+	[Ten] [nvarchar](max) NULL,
+	[MoTa] [nvarchar](max) NULL,
+	[AnhBia] [nvarchar](max) NULL,
+	[ThuTu] [int] NULL,
+	[ParentID] [int] NULL,
+	[View] [int] NULL DEFAULT 0,
+	[UserCreated] [nvarchar](100) NULL,
+	[DateCreated] [datetime] NULL,
+	[UserModified] [nvarchar](100) NULL,
+	[DateModified] [datetime] NULL,
+	[Status] [int] NULL,
+ CONSTRAINT [PK_DanhMuc] PRIMARY KEY CLUSTERED 
+(
+	[DanhMucID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+/* QUAN LY CHU DE */
+CREATE TABLE {databaseOwner}[{objectQualifier}ChuDe](
+	[ChuDeID] [int] IDENTITY(1,1) NOT NULL,
+	[Ten] [nvarchar](max) NULL,
+	[MoTa] [nvarchar](max) NULL,
+	[ThuTu] [int] NULL,
+	[UserCreated] [nvarchar](100) NULL,
+	[DateCreated] [datetime] NULL,
+	[UserModified] [nvarchar](100) NULL,
+	[DateModified] [datetime] NULL,
+	[Status] [int] NULL,
+ CONSTRAINT [PK_ChuDe] PRIMARY KEY CLUSTERED 
+(
+	[ChuDeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+/* QUAN LY TAP CHI */
+CREATE TABLE {databaseOwner}[{objectQualifier}TapChi](
+	[TapChiID] [int] IDENTITY(1,1) NOT NULL,
+	[Ten] [nvarchar](max) NULL,
+	[AnhBia] [nvarchar](max) NULL,
+	[DanhMucID] [int] NULL,
+	[ChuDeID] [int] NULL,
+	[TuKhoa] [nvarchar](max) NULL,
+	[Trang] [varchar](50) NULL,
+	[ThuTu] [int] NULL,
+	[MaSo] [varchar](50) NULL,
+	[TomTat] [nvarchar](max) NULL,
+	[LinkDownload] [varchar](max) NULL,
+	[NgayNhan] [datetime] NULL,
+	[NgayNhanLai] [datetime] NULL,
+	[NgayDuyet] [datetime] NULL,
+	[View] [int] NULL DEFAULT 0,
+	[UserCreated] [nvarchar](100) NULL,
+	[DateCreated] [datetime] NULL,
+	[UserModified] [nvarchar](100) NULL,
+	[DateModified] [datetime] NULL,
+	[Status] [int] NULL,
+ CONSTRAINT [PK_TapChi] PRIMARY KEY CLUSTERED 
+(
+	[TapChiID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi]  WITH CHECK ADD  CONSTRAINT [FK_TapChi_DanhMuc] FOREIGN KEY([DanhMucID])
+REFERENCES {databaseOwner}[{objectQualifier}DanhMuc] ([DanhMucID])
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi] CHECK CONSTRAINT [FK_TapChi_DanhMuc]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi]  WITH CHECK ADD  CONSTRAINT [FK_TapChi_ChuDe] FOREIGN KEY([ChuDeID])
+REFERENCES {databaseOwner}[{objectQualifier}ChuDe] ([ChuDeID])
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi] CHECK CONSTRAINT [FK_TapChi_ChuDe]
+GO
+
+/* QUAN LY TAP CHI - TAC GIA */
+CREATE TABLE {databaseOwner}[{objectQualifier}TapChi_TacGia](
+	[TCTGID] [int] IDENTITY(1,1) NOT NULL,
+	[TapChiID] [int] NULL,
+	[TacGiaID] [int] NULL,
+	[UserCreated] [nvarchar](100) NULL,
+	[DateCreated] [datetime] NULL,
+	[UserModified] [nvarchar](100) NULL,
+	[DateModified] [datetime] NULL,
+	[Status] [int] NULL,
+ CONSTRAINT [PK_TapChi_TacGia] PRIMARY KEY CLUSTERED 
+(
+	[TCTGID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi_TacGia]  WITH CHECK ADD  CONSTRAINT [FK_TapChi_TacGia_TacGia] FOREIGN KEY([TacGiaID])
+REFERENCES {databaseOwner}[{objectQualifier}TacGia] ([TacGiaID])
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi_TacGia] CHECK CONSTRAINT [FK_TapChi_TacGia_TacGia]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi_TacGia]  WITH CHECK ADD  CONSTRAINT [FK_TapChi_TacGia_TapChi] FOREIGN KEY([TapChiID])
+REFERENCES {databaseOwner}[{objectQualifier}TapChi] ([TapChiID])
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi_TacGia] CHECK CONSTRAINT [FK_TapChi_TacGia_TapChi]
+GO
+
+/* QUAN LY TAP CHI - CHU DE */
+CREATE TABLE {databaseOwner}[{objectQualifier}TapChi_ChuDe](
+	[TCCDID] [int] IDENTITY(1,1) NOT NULL,
+	[TapChiID] [int] NULL,
+	[ChuDeID] [int] NULL,
+	[UserCreated] [nvarchar](100) NULL,
+	[DateCreated] [datetime] NULL,
+	[UserModified] [nvarchar](100) NULL,
+	[DateModified] [datetime] NULL,
+	[Status] [int] NULL,
+ CONSTRAINT [PK_TapChi_ChuDe] PRIMARY KEY CLUSTERED 
+(
+	[TCCDID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi_ChuDe]  WITH CHECK ADD  CONSTRAINT [FK_TapChi_ChuDe_ChuDe] FOREIGN KEY([ChuDeID])
+REFERENCES {databaseOwner}[{objectQualifier}ChuDe] ([ChuDeID])
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi_ChuDe] CHECK CONSTRAINT [FK_TapChi_ChuDe_ChuDe]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi_ChuDe]  WITH CHECK ADD  CONSTRAINT [FK_TapChi_ChuDe_TapChi] FOREIGN KEY([TapChiID])
+REFERENCES {databaseOwner}[{objectQualifier}TapChi] ([TapChiID])
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TapChi_ChuDe] CHECK CONSTRAINT [FK_TapChi_ChuDe_TapChi]
+GO
+
+/* QUAN LY CHU DE */
+CREATE TABLE {databaseOwner}[{objectQualifier}TheLoaiTinTuc](
+	[TheLoaiID] [int] IDENTITY(1,1) NOT NULL,
+	[Ten] [nvarchar](max) NULL,
+	[MoTa] [nvarchar](max) NULL,
+	[ThuTu] [int] NULL,
+	[UserCreated] [nvarchar](100) NULL,
+	[DateCreated] [datetime] NULL,
+	[UserModified] [nvarchar](100) NULL,
+	[DateModified] [datetime] NULL,
+	[Status] [int] NULL,
+ CONSTRAINT [PK_TheLoaiTinTuc] PRIMARY KEY CLUSTERED 
+(
+	[TheLoaiID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+
+
+/* QUAN LY  TIN TUC */
+CREATE TABLE {databaseOwner}[{objectQualifier}TinTuc](
+	[TinTucID] [int] IDENTITY(1,1) NOT NULL,
+	[TieuDe] [nvarchar](max) NULL,
+	[TomTat] [nvarchar](max) NULL,
+	[NoiDung] [nvarchar](max) NULL,
+	[TheLoaiID] [int] NULL,
+	[TinNong] [int] NULL DEFAULT 0,
+	[HienThi] [int] NULL DEFAULT 0,
+	[Image] [nvarchar](max) NULL,
+	[File] [nvarchar](max) NULL,
+	[NguonTin] [nvarchar](max) NULL,
+	[LuuY] [nvarchar](max) NULL,	
+	[View] [int] NULL DEFAULT 0,
+	[ThuTu] [int] NULL,
+	[Tags] [nvarchar](max) NULL,
+	[UserCreated] [nvarchar](100) NULL,
+	[DateCreated] [datetime] NULL,
+	[UserModified] [nvarchar](100) NULL,
+	[DateModified] [datetime] NULL,
+	[Status] [int] NULL,
+ CONSTRAINT [PK_TinTuc] PRIMARY KEY CLUSTERED 
+(
+	[TinTucID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TinTuc]  WITH CHECK ADD  CONSTRAINT [FK_TinTuc_TheLoai] FOREIGN KEY([TheLoaiID])
+REFERENCES {databaseOwner}[{objectQualifier}TheLoaiTinTuc] ([TheLoaiID])
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}TinTuc] CHECK CONSTRAINT [FK_TinTuc_TheLoai]
+GO
+
+CREATE TABLE {databaseOwner}[{objectQualifier}GopY](
+	[GopYId] [int] IDENTITY(1,1) NOT NULL,
+	[Ten] [nvarchar](max) NOT NULL,
+	[DonViCongTac] [nvarchar](max) NOT NULL,
+	[DiaChi] [nvarchar](max) NOT NULL,
+	[DienThoai] [nvarchar](max) NOT NULL,
+	[TieuDe] [nvarchar](max) NULL,
+	[NoiDung] [nvarchar](max) NULL,
+	[CreatedOnDate] [datetime] NULL,
+	[LastModifiedOnDate] [datetime] NULL,
+	[Status] [int] NULL,
+ CONSTRAINT [PK_GopY] PRIMARY KEY CLUSTERED 
+(
+	[GopYId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

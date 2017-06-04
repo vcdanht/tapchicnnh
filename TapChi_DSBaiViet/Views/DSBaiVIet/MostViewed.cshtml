@@ -1,0 +1,78 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Tapchi.Modules.TapchiDataModel.Models.TapChi>>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Web.Client.ClientResourceManagement
+
+@{
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_DSBaiViet/Scripts/Slick/slick.js");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_DSBaiViet/Content/Slick/slick.css");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_DSBaiViet/Content/Slick/slick-theme.css");
+}
+
+<div id="Items-@Dnn.ModuleContext.ModuleId">
+    <h2 class="section-header float-header">
+        <span>BÀI VIẾT ĐƯỢC QUAN TÂM NHIỀU NHẤT</span>
+        <div class="view-option"><a data-param="week" class="load-type active" href="javascript:void(0)">TUẦN</a> <span class="load-separator">|</span> <a data-param="month" class="load-type" href="javascript:void(0)">THÁNG</a></div>
+    </h2>
+    <div class="clear"></div>
+    
+    @if (Model.Count() == 0)
+    {
+        <p>@Dnn.LocalizeString("NoItems")</p>
+    }
+    else
+    {
+        <div id="baiviet-slider">
+            @Html.Partial("_BaiVietSlider", Model)
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    function initSlider() {
+        
+        $(".regular").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1
+        });
+        
+    }
+    /*globals jQuery, window, Sys */
+    (function ($, Sys) {
+        $(function () {
+            initSlider();
+            
+            $(".load-type").click(function () {
+                $(".load-type").removeClass("active");
+                $(this).addClass("active");
+                var ModuleId = @Dnn.ModuleContext.ModuleId;
+                var TabId = @Dnn.ModuleContext.TabId;
+                var rvtoken = $("input[name='__RequestVerificationToken']").val();
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/text",
+                    url: "DesktopModules/MVC/TapChi_DSBaiViet/DSBaiViet/SliderView",
+                    data: "type=" + $(this).data('param'),
+                    dataType: "text",
+                    headers: {
+                        "ModuleId": ModuleId,
+                        "TabId": TabId,
+                        "RequestVerificationToken": rvtoken
+                    },
+                    success: function (response) {
+                        $("#baiviet-slider").html(response);
+                        initSlider();
+                    },
+                    error: function (request, error) {
+                        alert("Error: " + error);
+                    },
+                });
+            });
+        });
+
+
+
+    }(jQuery, window.Sys));
+</script>

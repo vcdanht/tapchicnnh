@@ -1,0 +1,8 @@
+C:\inetpub\wwwroot\dnn\bin\TapChi_Search.dll.config
+C:\inetpub\wwwroot\dnn\bin\TapChi_Search.dll
+C:\inetpub\wwwroot\dnn\bin\TapChi_Search.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_Search\obj\Debug\TapChi.Modules.TapChi_Search.App_LocalResources.Settings.resources
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_Search\obj\Debug\TapChi_Search.csproj.GenerateResource.Cache
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_Search\obj\Debug\TapChi_Search.dll
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_Search\obj\Debug\TapChi_Search.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_Search\obj\Debug\TapChi_Search.csprojResolveAssemblyReference.cache

@@ -1,0 +1,120 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}DNNUOL_GetOnlineUserStatistics]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}DNNUOL_GetOnlineUserStatistics
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}DNNUOL_GetOnlineUserStatistics
+
+@PortalID  int,
+@IncludeHosts bit
+AS
+	-- Anonymous User Count
+	SELECT count(UserID) AS AnonymousUserCount
+	 FROM  {databaseOwner}{objectQualifier}AnonymousUsers
+	 WHERE PortalId = @PortalID
+
+	-- Users Online Count
+	IF @IncludeHosts = 0
+		SELECT count(UO.UserID) AS OnlineUserCount
+		 FROM        {databaseOwner}{objectQualifier}UsersOnline UO 
+		  INNER JOIN {databaseOwner}{objectQualifier}Users U on UO.UserID = U.UserID
+		 WHERE UO.PortalId = @PortalID AND U.IsSuperUser = 0
+	ELSE
+		SELECT count(UserID) AS OnlineUserCount
+		 FROM {databaseOwner}{objectQualifier}UsersOnline
+		 WHERE PortalId = @PortalID
+
+	-- Last User Registered
+	SELECT 
+		UserID, 
+		UserName, 
+		DisplayName, 
+		FirstName, 
+		LastName, 
+		FirstName + ' ' + LastName AS FullName
+	 FROM   {databaseOwner}{objectQualifier}Users
+	 WHERE  UserID = (SELECT top 1 UserId FROM {databaseOwner}{objectQualifier}UserPortals 
+	                  WHERE PortalID = @PortalID AND Authorised = 1 AND IsDeleted = 0 
+					  ORDER BY UserPortalId DESC)
+
+	-- Membership Count
+	SELECT count(UserID) AS MembershipCount
+	 FROM   {databaseOwner}{objectQualifier}UserPortals
+	 WHERE PortalId = @PortalID AND Authorised = 1 AND IsDeleted = 0
+
+	-- Members in last 24h
+	SELECT count(UserID) AS MembershipToday
+	 FROM {databaseOwner}{objectQualifier}UserPortals
+	 WHERE PortalId = @PortalID AND Authorised = 1 AND IsDeleted = 0
+	   AND CreatedDate > DateAdd(d, -1, GetDate())
+
+	-- Members 24h before
+	SELECT count(UserID) AS MembershipYesterday
+	 FROM {databaseOwner}{objectQualifier}UserPortals
+	 WHERE PortalId = @PortalID AND Authorised = 1 AND IsDeleted = 0
+	   AND CreatedDate > DateAdd(d, -2, GetDate()) 
+	   AND CreatedDate < DateAdd(d, -1, GetDate())
+
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}DNNUOL_GetOnlineUsers]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}DNNUOL_GetOnlineUsers
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}DNNUOL_GetOnlineUsers
+@PortalID int,
+@IncludeHosts bit
+AS
+	IF @IncludeHosts = 0
+		SELECT 
+			U.UserID,
+			U.UserName,
+			U.DisplayName,
+			U.FirstName, 
+			U.LastName, 
+			U.FirstName + ' ' + U.LastName AS FullName,
+			vT.TabID,
+			vT.TabName,
+			vT.IsSecure
+		FROM        {databaseOwner}{objectQualifier}UsersOnline UO
+		 INNER JOIN {databaseOwner}{objectQualifier}Users       U  ON UO.UserID = U.UserID 
+		 INNER JOIN {databaseOwner}{objectQualifier}UserPortals UP ON UO.UserID = UP.UserID AND UO.PortalID = UP.PortalID
+		 INNER JOIN dbo.vw_Tabs vT ON UO.TabID = vT.TabID
+		WHERE UO.PortalID   = @PortalID
+		  AND UO.UserID     = U.UserID 
+		  AND UP.Authorised = 1 
+		  AND UP.IsDeleted  = 0
+		  AND U.IsSuperUser = 0 -- Inner Join takes care of SU = 0, but for sanity.
+	ELSE
+		SELECT 
+			U.UserID,
+			U.UserName,
+			U.DisplayName,
+			U.FirstName, 
+			U.LastName, 
+			U.FirstName + ' ' + U.LastName AS FullName,
+			vT.TabID,
+			vT.TabName,
+			vT.IsSecure
+		FROM        {databaseOwner}{objectQualifier}UsersOnline UO
+		 INNER JOIN {databaseOwner}{objectQualifier}Users       U  ON UO.UserID = U.UserID 
+		 LEFT  JOIN {databaseOwner}{objectQualifier}UserPortals UP ON UO.UserID = UP.UserID AND UO.PortalID = UP.PortalID
+		 LEFT  JOIN dbo.vw_Tabs vT ON UO.TabID = vT.TabID
+		WHERE UO.PortalID    = @PortalID
+		  AND UO.UserID      = U.UserID
+		  AND (UP.IsDeleted  = 0 OR UP.UserID Is Null)
+		  AND (UP.Authorised = 1 OR UP.UserID Is Null)
+GO
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

@@ -1,0 +1,69 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Tapchi.Modules.TapchiDataModel.Models.DanhMuc>
+
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Web.Client.ClientResourceManagement
+
+@{
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/Resources/Shared/components/ckeditor/ckeditor.js");
+    //ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_QuanLyDanhMuc/Scripts/jquery.fileupload/js/jquery.fileupload.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_QuanLyDanhMuc/Scripts/jquery.fileupload/js/jquery.iframe-transport.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_QuanLyDanhMuc/Scripts/jquery.fileupload/js/vendor/jquery.ui.widget.js");
+
+    //ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_QuanLyDanhMuc/Content/jQuery.FileUpload/css/jquery.fileupload.css");
+    //ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_QuanLyDanhMuc/Content/jQuery.FileUpload/css/jquery.fileupload-ui.css");
+
+}
+<div id="Item-@Dnn.ModuleContext.ModuleId">
+    <div>
+        <input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>
+        <fieldset>
+           @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="dnnFormItem">
+                <div><label for="itemName">Tên Chuyên mục</label></div>
+                @Html.TextBoxFor(m => m.Ten)
+                @Html.ValidationMessageFor(m => m.Ten, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Chuyên mục cha</label></div>
+                @Html.DropDownListFor(m => m.ParentID, (IEnumerable<SelectListItem>)ViewBag.ListDanhMucCha)
+                @Html.ValidationMessageFor(m => m.ParentID, "", new { @class = "text-danger" })
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Mô tả</label></div>
+                @Html.TextAreaFor(m => m.MoTa,  new { @class = "ckeditor" })
+                @Html.ValidationMessageFor(m => m.MoTa, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div>
+                    <label for="itemDescription">Ảnh bìa</label><br/>
+                    <img src="@Tapchi.Modules.TapchiDataModel.Helpers.FileUploadHelper.GetContentUrl(@Model.AnhBia)" width="100" />
+                    <input type="file" name="fileAnhBia" id="fileAnhBia" />
+                    @Html.ValidationMessageFor(m => m.AnhBia, "", new { @class = "text-danger" })
+                </div>
+                <br/>
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Thứ tự</label></div>
+                @Html.TextBoxFor(m => m.ThuTu)
+                @Html.ValidationMessageFor(m => m.ThuTu, "", new { @class = "text-danger" })
+            </div>            
+        </fieldset>
+    </div>
+    <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
+    <a id="cancelEdit" href="#" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
+</div>
+
+<script type="text/javascript">
+    /*globals jQuery, window, Sys */
+    (function($, Sys) {
+       /* $(function() {
+            $('#cancelEdit').click(function() { dnnModal.closePopUp(false); });
+            dnnEditBasicSettings();
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+                dnnEditBasicSettings();
+            });
+        });*/
+       
+    }(jQuery, window.Sys));
+</script>

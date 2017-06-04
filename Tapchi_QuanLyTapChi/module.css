@@ -1,0 +1,10 @@
+.tagit.ui-widget.ui-widget-content.ui-corner-all {
+    width: 90%;
+}
+.multiselect {
+    width: 100%;
+}
+
+.select2-selection__choice {
+    font-size: 12px;
+}

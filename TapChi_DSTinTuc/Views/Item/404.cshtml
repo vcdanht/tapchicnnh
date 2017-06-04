@@ -1,0 +1,26 @@
+﻿
+
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+
+<div id="Item-@Dnn.ModuleContext.ModuleId">
+    <div class="warning center">
+        <p>Yêu cầu của bạn hệ thống chưa kịp xử lí hoặc nội dung không tìm thấy!</p>
+        <p>Bạn vui lòng <a href="/">bấm vào đây</a> để quay về trang chủ.</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    /*globals jQuery, window, Sys */
+    (function($, Sys) {
+        function dnnEditBasicSettings() {
+            $('#dnnEditBasicSettings').dnnPanels();
+            $('#dnnEditBasicSettings .dnnFormExpandContent a').dnnExpandAll({ expandText: '@Dnn.LocalizeString("ExpandAll")', collapseText: '@Dnn.LocalizeString("CollapseAll")', targetArea: '#dnnEditBasicSettings' });
+        }
+
+        $(function() {
+
+        });
+
+    }(jQuery, window.Sys));
+</script>

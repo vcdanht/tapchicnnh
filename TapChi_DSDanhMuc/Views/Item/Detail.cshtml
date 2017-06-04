@@ -1,0 +1,35 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Tapchi.Modules.TapchiDataModel.Models.DanhMuc>
+
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+@{
+    var page = (Page)HttpContext.Current.Handler;
+    page.Title = "Chuyên mục - " + Model.Ten;
+}
+
+<div id="Item-@Dnn.ModuleContext.ModuleId">
+    <div style="text-align: center">
+        <div><img src="@Tapchi.Modules.TapchiDataModel.Helpers.FileUploadHelper.GetContentUrl(Model.AnhBia)" width="200px" /></div>
+        <div>Tạp chí đã xuất bản</div>
+    </div>
+    <div>
+        2016 (TODO)
+    </div>
+    <div>
+        <h3 style="float:left">@(Model.Ten). @(Model.MoTa)</h3>
+        <div style="float:right">Share buttons</div>
+    </div>
+    <div class="clear"></div>
+    <div style="margin-left: 80px">
+        @foreach (var item in Model.ListBaiViet())
+        {
+            <div>
+                <a href="@Url.Content("~/Bai-viet/id/")@item.TapChiID">@item.Ten</a>
+            </div>
+            <div>
+                @item.DSTacGia
+            </div>
+            <hr/>
+        }
+    </div>
+</div>

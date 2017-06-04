@@ -1,0 +1,29 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Tapchi.Modules.TapchiDataModel.Models.TapChi>>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+
+<section class="regular slider">
+    @foreach (var item in Model)
+    {
+        <div class="item-blue">
+            <div class="item-content-container">
+                <div class="item-content">
+                    <a href="@Url.Content("~/Bai-viet/id/")@item.TapChiID">@item.Ten</a>
+                </div>
+                <div class="item-author">
+                    <div>@item.DSTacGia</div>
+                </div>
+            </div>
+            <div class="item-danhmuc-views">
+                <div class="item-danhmuc">@item.DanhMucObj.Ten</div>
+                <div class="item-view">@item.View</div>
+                <div class="clear"></div>
+            </div>
+
+        </div>
+    }
+
+</section>
+
+

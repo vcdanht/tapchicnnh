@@ -1,0 +1,8 @@
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSDanhMuc.dll.config
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSDanhMuc.dll
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSDanhMuc.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSDanhMuc\obj\Debug\TapChi.Modules.TapChi_DSDanhMuc.App_LocalResources.Settings.resources
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSDanhMuc\obj\Debug\TapChi_DSDanhMuc.csproj.GenerateResource.Cache
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSDanhMuc\obj\Debug\TapChi_DSDanhMuc.dll
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSDanhMuc\obj\Debug\TapChi_DSDanhMuc.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSDanhMuc\obj\Debug\TapChi_DSDanhMuc.csprojResolveAssemblyReference.cache

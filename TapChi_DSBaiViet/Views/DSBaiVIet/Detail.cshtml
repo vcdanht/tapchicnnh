@@ -1,0 +1,87 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Tapchi.Modules.TapchiDataModel.Models.TapChi>
+
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+@{
+    var page = (Page)HttpContext.Current.Handler;
+    page.Title = "Bài viết - " + Model.Ten;
+}
+
+<div id="Item-@Dnn.ModuleContext.ModuleId">
+    <div id="content" class="site-content clr">
+        <div class="baiviet-danhmuc">@Model.DanhMucObj.Ten | @Model.DanhMucObj.MoTa</div>
+        <h1 class="baiviet-title" itemprop="headline">@Model.Ten</h1>
+        <div>
+            <div>@Model.DSTacGia</div>
+            <div>Share icon</div>
+        </div>
+        <div>
+            <span><b>Ngày nhận:</b> @Model.NgayNhan.ToString("dd/MM/yyyy")</span> | 
+            <span><b>Ngày nhận lại:</b> @Model.NgayNhan.ToString("dd/MM/yyyy")</span> | 
+            <span><b>Ngày duyệt:</b> @Model.NgayNhan.ToString("dd/MM/yyyy")</span> | 
+            <span><b>Mã số:</b> @Model.NgayNhan.ToString("dd/MM/yyyy")</span>
+        </div>
+       
+        <div>
+            <b>Tóm tắt:</b> @Html.Raw(Model.TomTat)
+        </div>
+        <div>
+            <b>Từ khóa:</b> 
+                @foreach (var tukhoa in Model.ListTuKhoa)
+                {
+                    <span>@tukhoa</span>
+                }
+        </div>
+        <div>
+            @foreach (var tg in Model.ListTacGia)
+            {
+                <div>@Html.Raw(tg.GetDisplayString())</div>
+            }
+        </div>
+    </div>
+    <hr />
+    <div id="related-section">
+        <div id="prev-post" style="width: 50%; float:left; border-right: 1px solid grey">
+            <h5>BÀI VIẾT TRƯỚC</h5>
+            @if (ViewBag.BaiVietTruoc!=null) {
+            <div>
+                <a href="@Url.Content("~/Bai-viet/id/")@ViewBag.BaiVietTruoc.TapChiID">@ViewBag.BaiVietTruoc.Ten</a>
+                <div>@ViewBag.BaiVietTruoc.DSTacGia</div>
+            </div>
+            } else
+            {
+                <div>Không có bài viết trước</div>
+            }
+        </div>
+        <div id="next-post"  style="width: 50%; float:right">
+            <h5>BÀI VIẾT SAU</h5>
+            @if (ViewBag.BaiVietSau != null)
+            {
+                <div>
+                    <a href="@Url.Content("~/Bai-viet/id/")@ViewBag.BaiVietSau.TapChiID">@ViewBag.BaiVietSau.Ten</a>
+                    <div>@ViewBag.BaiVietSau.DSTacGia</div>
+                </div>
+            }
+            else
+            {
+                <div>Không có bài viết sau</div>
+            }
+        </div>
+    </div>
+    <hr />
+    <div>
+        <h5>Bài viết tương tự</h5>
+        <ul class="tm_tl">
+            @foreach (var item in ViewBag.BaiVietTuongTu)
+            {
+                <li class="tm_t">
+                    <div>
+                        <a href="@Url.Content("~/Bai-viet/id/")@item.TapChiID">@item.Ten</a>
+                    </div>
+                    <div>@item.DSTacGia</div>
+                </li>
+            }
+
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,226 @@
+.danhmuc-calendar {
+    width: 100%;
+    float: left;
+    border-bottom: 10px solid #01509b;
+}
+.danhmuc-calendar div span {
+    display: block;
+}
+
+.danhmuc-calendar > div {
+    background-color: #f1f1f1;
+    color: #2969a9;
+    float: left;
+    font-size: 11px;
+    width: 33.33%;
+    height: 60px;
+    
+    border-bottom: 1px solid #01509b;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.danhmuc-calendar > div > div {
+    padding: 5px;
+}
+
+.danhmuc-calendar > div > div:hover {
+    background-color: #03c4cb;
+    margin: 0 1px;
+    border-radius: 10px;
+}
+
+.danhmuc-calendar > div > div > a, .danhmuc-calendar > div > div > a:hover, .danhmuc-calendar > div > div > a:visited {
+    text-decoration: none;
+    color: #2969a7;
+}
+
+.danhmuc-calendar > div > div:hover > a {
+    color: #FFF;
+}
+.danhmuc-calendar div b {
+    font-size: 12px;
+}
+.danhmuc-calendar > div:nth-child(3n+1) {
+    clear: both;
+}
+
+.danhmuc-year {
+    padding: 5px;
+    text-align: center;
+    background-color: #01509b;
+    color: #d7e5f0;
+    font-size: 25px;
+    border-top: 2px solid #03c4cb;
+    float: left;
+    width: 100%;
+}
+
+.danhmuc-cover {
+    text-align: center;
+    font-size: 17px;
+    color: #FFF;
+    background-color: #01509b;
+}
+
+.danhmuc-cover > div {
+    padding: 15px 0 5px 0;
+    
+}
+.danhmuc-year-prev {
+    float: left;
+    position: relative;
+    left: 20px;
+}
+
+.danhmuc-year-middle {
+    float: left;
+}
+.danhmuc-year-next {
+    float: right;
+    position: relative;
+    right: 20px;
+}
+.danhmuc-year-middle {
+    width: 87%;
+}
+
+.danhmuc-year a, .danhmuc-year a:hover, .danhmuc-year a:visited {
+    color: #FFF;
+    font-size: 36px;
+    text-decoration: none;
+}
+
+.danhmuc-image-cover {
+    height: 330px;
+}
+
+.float-header {
+    float: left;
+    width: 100%;
+}
+
+
+.view-option {
+    float: right;
+    font-size: 15px;
+}
+
+a.load-type, a.load-type:hover, a.load-type:visited {
+    text-decoration: none;
+    
+}
+a.load-type:hover, a.load-type:visited {
+    color: #9b9b9b;
+}
+.load-type {
+    color: #dedede;
+}
+    
+.load-type.active {
+    color: #9b9b9b;
+}
+.load-separator {
+    color: #9b9b9b;
+}
+
+.section-header-no-border {
+    color: #01509b;
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+.item-dm-container {
+    float: left;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+    position: relative;
+    width: 100%;
+}
+
+.item-content-left {
+    
+    float: left;
+   width: 10%;
+   text-align : center;
+}
+
+.item-content-right {
+    margin-top: 31px;
+   
+    float: left;
+    width: 90%;
+}
+
+.item-dm-content {
+    width: 60px;
+    height: 60px;
+}
+
+
+    .item-dm-content:hover, .item-dm-content.current {
+        border-radius: 30px;
+        background-color: #03c4cb;
+    }
+
+    .item-dm-content a, .item-dm-content a:hover, .item-dm-content a:visited {
+        font-size: 11px;
+        color: #01509b;
+        text-decoration: none;
+    }
+.item-content-right > .slick-slider {
+    margin-bottom: 0;
+}
+.year-current a {
+    font-size: 25px;
+    color: #02519c;
+}
+.year-prev, .year-next {
+    margin: -8px 0;
+}
+.year-prev a, .year-prev a:hover, .year-prev a:visited, .year-next a, .year-next a:hover, .year-next a:visited {
+    font-size: 18px;
+    color: #f1f1f1;
+}
+    
+    
+    #year-up, #year-down {
+        font-size: 30px;
+        color: #808080;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.item-blue {
+    float: left;
+    margin: 0 10px;
+}
+.danhmuc-title h3 {
+    color: #03c4cb;
+    width: 100%;
+}
+.danhmuc-title span {
+    font-size: 14px;
+    color: #757575;
+}
+.share-button {
+    margin-left: 20px;
+    margin-right: 3px;
+    color: #01509b;
+}
+
+.item-baiviet a, .item-baiviet a:hover, .item-baiviet a:visited {
+    color: #1760a5;
+    font-size: 15px;
+}
+
+.item-tacgia {
+    color: #474b4c;
+    font-size: 15px;
+    margin: 5px 0;
+}
+
+hr.short-hr {
+    padding-left: 10px;
+}

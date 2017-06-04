@@ -1,0 +1,45 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Tapchi.Modules.TapchiDataModel.Models.TapChi>>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+
+
+<div id="Items-@Dnn.ModuleContext.ModuleId">
+    <h2 class="section-header">BÀI VIẾT MỚI</h2>
+    @if (Model.Count() == 0)
+    {
+        <p>@Dnn.LocalizeString("NoItems")</p>
+    }
+    else
+    {
+        <div class="item-home-right item-container">
+            <div class="first-image">
+                <a href="@Url.Content("~/Bai-viet/id/")@ViewBag.FirstItem.TapChiID"><img src="@Tapchi.Modules.TapchiDataModel.Helpers.FileUploadHelper.GetContentUrl(ViewBag.FirstItem.AnhBia)" width="100%" /></a>
+            </div>
+            <ul class="item-list">
+                <li>
+                    
+                    <div>
+                        <a href="@Url.Content("~/Bai-viet/id/")@ViewBag.FirstItem.TapChiID">@ViewBag.FirstItem.Ten</a>
+                    </div>
+                    <div class="item-date">@ViewBag.FirstItem.DateCreated.ToString("dddd, dd MMMM | yyyy")</div>
+                </li>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <div>
+                            <a href="@Url.Content("~/Bai-viet/id/")@item.TapChiID">@item.Ten</a>
+                        </div>
+                        <div class="item-date">@item.DateCreated.ToString("dddd, dd MMMM | yyyy")</div>
+                    </li>
+                }
+            </ul>
+            @if (Model.Count() > 6)
+            {
+            <div>
+                <a href="">XEM THÊM ></a>
+            </div>
+            }
+        </div>
+    }
+</div>

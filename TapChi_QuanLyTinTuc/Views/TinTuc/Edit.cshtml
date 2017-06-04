@@ -1,0 +1,99 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Tapchi.Modules.TapchiDataModel.Models.TinTuc>
+
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Web.Client.ClientResourceManagement
+
+@{
+
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/Resources/Shared/components/ckeditor/ckeditor.js");
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_QuanLyTapChi/Scripts/select2.js");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_QuanLyTapChi/Content/css/select2.css");
+
+}
+
+<div id="Item-@Dnn.ModuleContext.ModuleId">
+    <div>
+        <fieldset>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.TinTucID)
+            <div class="dnnFormItem">
+                <div><label for="itemName">Tiêu đề</label></div>
+                @Html.TextBoxFor(m => m.TieuDe)
+                @Html.ValidationMessageFor(m => m.TieuDe, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Thể loại</label></div>
+                @Html.DropDownListFor(m => m.TheLoaiID, (IEnumerable<SelectListItem>)ViewBag.ListTheLoai)
+                @Html.ValidationMessageFor(m => m.TheLoaiID, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Tóm tắt</label></div>
+                @Html.TextAreaFor(m => m.TomTat)
+                @Html.ValidationMessageFor(m => m.TomTat, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Ảnh</label></div>
+                @if (Model.Image != "")
+                {
+                    <img src="@Tapchi.Modules.TapchiDataModel.Helpers.FileUploadHelper.GetContentUrl(@Model.Image)" width="100" />
+                        <a href="javascript:void(0)" id="remove_image">Remove</a>
+                }
+                <input type="file" name="fileAnhBia" id="fileAnhBia" />
+                @Html.ValidationMessageFor(m => m.Image, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Nội dung</label></div>
+                @Html.TextAreaFor(m => m.NoiDung)
+                @Html.ValidationMessageFor(m => m.NoiDung, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Tags</label></div>
+                @Html.TextBoxFor(m => m.Tags)
+                @Html.ValidationMessageFor(m => m.Tags, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Nguồn tin</label></div>
+                @Html.TextBoxFor(m => m.NguonTin)
+                @Html.ValidationMessageFor(m => m.NguonTin, "", new { @class = "text-danger" })
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemDescription">Lưu ý</label></div>
+                @Html.TextBoxFor(m => m.LuuY)
+                @Html.ValidationMessageFor(m => m.LuuY, "", new { @class = "text-danger" })
+            </div>
+
+        </fieldset>
+    </div>
+    <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
+    <a id="cancelEdit" href="#" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
+</div>
+
+<script type="text/javascript">
+    /*globals jQuery, window, Sys */
+    function getBaseUrl() {
+        var getUrl = window.location;
+        var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+      
+        return baseUrl;
+    }
+    (function ($, Sys) {
+        $(function () {
+            var url = getBaseUrl();
+            var ModuleId = @Dnn.ModuleContext.ModuleId;
+            var TabId = @Dnn.ModuleContext.TabId;
+            var PortalId = @Dnn.ModuleContext.PortalId;
+            
+            CKEDITOR.replace('NoiDung', {
+                filebrowserImageUploadUrl: url+'/Providers/HtmlEditorProviders/DNNConnect.CKE/Browser/Browser.aspx?Command=ImageUpload&tabid='+TabId+'&PortalID='+PortalId+'&mid='+ModuleId+'&ckid=NoiDung&mode=Portal'
+            });
+
+            $("#remove_image").click(function () {
+                $(this).parent().find("img").attr("src", "");
+                $(":file", $(this).parent()).val(null);
+            })
+        });
+
+    }(jQuery, window.Sys));
+</script>

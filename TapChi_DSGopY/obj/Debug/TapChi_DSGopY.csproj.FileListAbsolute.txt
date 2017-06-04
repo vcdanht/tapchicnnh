@@ -1,0 +1,8 @@
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSGopY.dll.config
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSGopY.dll
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSGopY.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSGopY\obj\Debug\TapChi_DSGopY.csprojResolveAssemblyReference.cache
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSGopY\obj\Debug\TapChi.Modules.TapChi_DSGopY.App_LocalResources.Settings.resources
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSGopY\obj\Debug\TapChi_DSGopY.csproj.GenerateResource.Cache
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSGopY\obj\Debug\TapChi_DSGopY.dll
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSGopY\obj\Debug\TapChi_DSGopY.pdb

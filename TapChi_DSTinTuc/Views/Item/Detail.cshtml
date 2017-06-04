@@ -1,0 +1,66 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Tapchi.Modules.TapchiDataModel.Models.TinTuc>
+
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+
+@{
+    var page = (Page)HttpContext.Current.Handler;
+    page.Title = "Tin tức - " + Model.TieuDe;
+}
+
+<div id="Item-@Dnn.ModuleContext.ModuleId">
+    <div id="content" class="site-content clr">
+        <div id="post-media">
+            <img src="@Tapchi.Modules.TapchiDataModel.Helpers.FileUploadHelper.GetContentUrl(Model.Image)" width="100%" />
+        </div>
+        <header class="single-blog-header clr">
+            <h1 class="single-post-title entry-title" itemprop="headline">@Model.TieuDe</h1>    
+        </header>
+        
+        <ul class="meta clr">
+            <li class="meta-date"><span class="fa fa-clock-o" aria-hidden="true"></span><time class="updated" datetime="2017-05-26" itemprop="datePublished" pubdate="">Tháng Năm 26, 2017</time></li>
+            <li class="meta-category"><span class="fa fa-folder-o" aria-hidden="true"></span><span class="uppercase">@Model.TheLoaiTinTucObj.Ten</span></li>
+        </ul>
+        <div class="single-blog-content entry clr" itemprop="text">
+            <p><b>@Html.Raw(Model.TomTat)</b></p>
+        </div>
+        <div class="single-blog-content entry clr" itemprop="text">
+            <p>@Html.Raw(Model.NoiDung)</p>
+        </div>
+        @if (Model.NguonTin!="") {
+        <div class="reference">
+            Theo (@Model.NguonTin)
+        </div>
+        }
+    </div>
+    <hr />
+    <!--div id="related-section">
+        <div id="prev-post">
+            <h5>TIN TRƯỚC</h5>
+            <div>
+                <a href="">abc</a>
+            </div>
+        </div>
+        <div id="next-post">
+            <h5>TIN SAU</h5>
+            <a href="">abc</a>
+        </div>
+    </div> 
+    <hr /-->
+    <div>
+        <h5>Tin khác</h5>
+        <ul class="tm_tl">
+            @foreach (var item in ViewBag.TinTruocs)
+            {
+                <li class="tm_t">
+                    <div>
+                        <a href="@Url.Content("~/Tin-tuc/id/")@item.TinTucID">@item.TieuDe</a>
+                    </div>
+                    <div>@item.DateCreated.ToString("dddd, dd MMMM | yyyy")</div>
+                </li>
+            }
+            
+        </ul>
+    </div>
+</div>
+

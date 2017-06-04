@@ -1,0 +1,62 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Tapchi.Modules.TapchiDataModel.Models.TapChi>>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Web.Client.ClientResourceManagement
+
+@{
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_DSBaiViet/Scripts/Slick/slick.js");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_DSBaiViet/Content/Slick/slick.css");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/DesktopModules/MVC/TapChi_DSBaiViet/Content/Slick/slick-theme.css");
+}
+
+<div id="Items-@Dnn.ModuleContext.ModuleId">
+    <div>
+        <h2 class="section-header" style="float: left">BÀI VIẾT ĐƯỢC QUAN TÂM NHIỀU NHẤT</h2>
+        <div style="float: right" class="view-option"><a href="#">TUẦN</a> | <a href="#">THÁNG</a></div>
+    </div>
+    <hr />
+    @if (Model.Count() == 0)
+    {
+        <p>@Dnn.LocalizeString("NoItems")</p>
+    }
+    else 
+    {
+             <section class="regular slider">
+                 @foreach (var item in Model)
+                 {
+                    <div class="item-blue">
+                        <div class="item-content-container">
+                            <div class="item-content">
+                                <a href="@Url.Content("~/Bai-viet/id/")@item.TapChiID">@item.Ten</a>
+                            </div>
+                            <div class="item-author">
+                                <div>@item.DSTacGia</div>
+                            </div>
+                        </div>
+                        <div class="item-danhmuc-views">
+                            <div class="item-danhmuc">@item.DanhMucObj.Ten</div>
+                            <div class="item-view">@item.View</div>
+                            <div class="clear"></div>
+                        </div>
+                        
+                    </div>
+                 }
+             </section>
+
+    }
+</div>
+<script type="text/javascript">
+    /*globals jQuery, window, Sys */
+    (function($, Sys) {
+        $(function() {
+            $(".regular").slick({
+                dots: true,
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 1
+            });
+        });
+
+    }(jQuery, window.Sys));
+</script>

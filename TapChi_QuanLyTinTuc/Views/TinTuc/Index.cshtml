@@ -1,0 +1,98 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Tapchi.Modules.TapchiDataModel.Models.TinTuc>>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+@using Tapchi.Modules.TapchiDataModel.Models;
+@using DotNetNuke.Web.Client.ClientResourceManagement
+
+@{
+    ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/js/jquery.dataTables.min.js");
+    ClientResourceManager.RegisterStyleSheet(Dnn.DnnPage, "~/js/jquery.dataTables.css");
+
+}
+
+
+
+
+<div id="Items-@Dnn.ModuleContext.ModuleId">
+    <div>
+        <a href="@Url.Action("Edit", "TinTuc", new {ctl = "Edit", itemId = -1})" title="Create" class="btn btn-primary">Tạo mới</a>
+    </div>
+    <br/>
+    @if (Model.Count() == 0)
+    {
+        <p>Không tìm thấy dữ liệu</p>
+    }
+    else
+    {
+        <table class="table paging">
+            <thead>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Ảnh
+                </th>
+                <th>
+                    Tin bài
+                </th>
+                <th>
+                    Chuyên mục
+                </th>
+                <th>
+                    Lượt xem
+                </th>
+                <th>
+                    Thứ tự
+                </th>
+                <th>
+
+                </th>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TinTucID</td>
+                    <td>
+                        <img src="@Tapchi.Modules.TapchiDataModel.Helpers.FileUploadHelper.GetContentUrl(item.Image)" width="100" />
+                    </td>
+                    <td>@item.TieuDe</td>
+                    <td>@item.TheLoaiTinTucObj.Ten</td>
+                    <td>@item.View</td>
+                    <td>@item.ThuTu</td>
+                    <td>
+                        <div>
+                            <a href="@Url.Action("Edit", "TinTuc", new {ctl = "Edit", itemId = item.TinTucID})">Edit</a>
+                            &nbsp;|&nbsp;<a class="btndelete" href="@Url.Action("Delete", "TinTuc", new {itemId = item.TinTucID})">Delete</a>
+                        </div>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    }
+</div>
+
+<script type="text/javascript">
+    /*globals jQuery, window, Sys */
+    (function($, Sys) {
+        $('.btndelete').click(function (e) {
+            if (!confirm("Bạn có thật sự muốn xóa dữ liệu không?")) {
+                e.preventDefault();
+            }
+        });
+        $('.table.paging').DataTable(
+            {
+                aoColumns: [
+                    { "bSortable": true, "bVisible": false },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": true },           
+                    { "bSortable": true },           
+                    { "bSortable": true },           
+                    { "bSortable": false }
+                ],
+                "order": [[1, "desc"]]
+            });
+    }(jQuery, window.Sys));
+</script>

@@ -1,0 +1,8 @@
+C:\inetpub\wwwroot\dnn\bin\TapChi_QuanLyTinTuc.dll.config
+C:\inetpub\wwwroot\dnn\bin\TapChi_QuanLyTinTuc.dll
+C:\inetpub\wwwroot\dnn\bin\TapChi_QuanLyTinTuc.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_QuanLyTinTuc\obj\Debug\TapChi.Modules.TapChi_QuanLyTinTuc.App_LocalResources.Settings.resources
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_QuanLyTinTuc\obj\Debug\TapChi_QuanLyTinTuc.csproj.GenerateResource.Cache
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_QuanLyTinTuc\obj\Debug\TapChi_QuanLyTinTuc.dll
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_QuanLyTinTuc\obj\Debug\TapChi_QuanLyTinTuc.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_QuanLyTinTuc\obj\Debug\TapChi_QuanLyTinTuc.csprojResolveAssemblyReference.cache

@@ -1,0 +1,21 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage <TapChi.Modules.TapChi_DSGopY.Models.Settings>
+
+@using DotNetNuke.Web.Mvc.Helpers
+
+<h2 id="dnnSitePanel-BasicSettings" class="dnnFormSectionHead"><a href="" class="dnnSectionExpanded">@Dnn.LocalizeString("BasicSettings")</a></h2>
+<fieldset>
+    <div class="dnnFormItem">
+        <div class="dnnLabel" style="position: relative;">
+            @Html.LabelFor(m => Model.DisplayType, new { @class = "col-md-2 control-label" })
+        </div>
+        @Html.DropDownListFor(m => Model.DisplayType, new SelectList(Model.SettingGopYOptions,
+                               "Id", "Value"))
+    </div>
+    <div class="dnnFormItem">
+        <div class="dnnLabel" style="position: relative;">
+            @Html.LabelFor(m => Model.AdminEmail, new { @class = "col-md-2 control-label" })
+        </div>
+        @Html.TextBoxFor(m => Model.AdminEmail)
+    </div>
+</fieldset>
+

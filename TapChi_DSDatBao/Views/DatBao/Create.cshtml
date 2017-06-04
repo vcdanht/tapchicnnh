@@ -1,0 +1,152 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Tapchi.Modules.TapchiDataModel.Models.DatBao>
+
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<div id="Item-@Dnn.ModuleContext.ModuleId">
+    <p class="feedback input-textbox">Quý độc giả vui lòng cung cấp thông tin:</p>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="feedback">
+        <p class="feedback left-column">Họ và tên</p>
+
+        <p>
+            @*<input class="feedback input-textbox" id="txtUserName" type="text" />*@
+            @Html.TextBoxFor(m => m.Ten, new { @class = "feedback input-textbox" })
+            @Html.ValidationMessageFor(m => m.Ten, "", new { @class = "text-danger" })
+        </p>
+    </div>
+    <div class="feedback">
+        <p class="feedback left-column">Giới tính</p>
+
+        <p>
+            @*<input class="feedback input-textbox" id="txtUserName" type="text" />*@
+            @Html.RadioButtonFor(m => m.GioiTinh, 1, new { @class = "feedback input-textbox" }) Nam
+            @Html.RadioButtonFor(m => m.GioiTinh, 0, new { @class = "feedback input-textbox" }) Nữ
+            @*@Html.TextBoxFor(m => m.Ten, new { @class = "feedback input-textbox" })
+                @Html.ValidationMessageFor(m => m.Ten, "", new { @class = "text-danger" })*@
+        </p>
+    </div>
+    <div class="feedback">
+        <p class="feedback left-column">Đơn vị công tác</p>
+
+        <p>
+        @Html.TextBoxFor(m => m.DonViCongtac, new { @class = "feedback input-textbox" })
+            </p>
+
+
+    </div>
+
+    <div class="feedback">
+        <p class="feedback left-column">Địa chỉ</p>
+
+        <p>
+            @Html.TextBoxFor(m => m.DiaChi, new { @class = "feedback input-textbox" })
+            @*@Html.ValidationMessageFor(m => m.DiaChi, "", new { @class = "feedback input-textbox" })*@
+        </p>
+    </div>
+
+    <div class="feedback">
+        <p class="feedback left-column">Điện thoại</p>
+
+        <p>
+            @Html.TextBoxFor(m => m.DienThoai, new { @class = "feedback input-textbox" })
+            @*@Html.ValidationMessageFor(m => m.DienThoai, "", new { @class = "feedback input-textbox" })*@
+        </p>
+    </div>
+
+    <div class="feedback">
+        <p class="feedback left-column">Email</p>
+
+        <p>
+            @Html.TextBoxFor(m => m.Email, new { @class = "feedback input-textbox" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </p>
+    </div>
+
+    <div class="feedback">
+        <p class="feedback left-column">Kỳ hạn đặt</p>
+
+        <p>
+            @*<input class="feedback input-textbox" id="txtTitle" type="text" />*@
+            @Html.TextBoxFor(m => m.KyHan, new { @class = "feedback input-textbox" })
+            @*@Html.ValidationMessageFor(m => m.TieuDe, "", new { @class = "text-danger" })*@
+            @*@Html.DropDownListFor(m => Model.KyHan.DisplayType, new SelectList(Model.KyHan.KyHanOptions,
+                "Id", "Value"))*@
+        </p>
+    </div>
+
+
+    <div class="feedback">
+        <p class="feedback left-column"></p>
+
+        <p>
+            @*<textarea class="feedback input-textbox" cols="50" placeholder="Kính mời quý độc giả đóng góp ý kiến tại đây" rows="4"></textarea>*@
+            @Html.TextAreaFor(m => m.NoiDung, new { @class = "feedback input-textbox" })
+            @Html.ValidationMessageFor(m => m.NoiDung, "", new { @class = "text-danger" })
+        </p>
+    </div>
+    <div class="feedback">
+        <p class="feedback left-column">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+        <p>
+            @Html.RadioButtonFor(m => m.HinhThucThanhToan, "TM", new { @class = "feedback input-textbox" }) Tiền mặt tại tòa soạn
+        <p>36 Tôn Thất Đạm, Quận 1, TP.HCM</p>
+        @Html.RadioButtonFor(m => m.HinhThucThanhToan, "CK", new { @class = "feedback input-textbox" }) Chuyển khoản
+        <p>Trường Đại học Ngân hàng TP.HCM</p>
+        <p>Tài khoản số: 102010000080992</p>
+        <p>Tại Ngân hàng TMCP Công thương - Chi nhánh TP.HCM</p>
+        </p>
+    </div>
+    
+
+    <div class="feedback">
+        <p class="feedback left-column">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <div class="g-recaptcha" data-sitekey="6Ld5CCQUAAAAAEfWmojH_JY4jOg8x1aNlmceclLj"></div>
+    </div>
+
+    <div class="clear"></div>
+
+    @if (ViewBag.RecaptchaLastErrors != null)
+    {
+        <div>Invalid reCAPTCHA</div>
+    }
+
+    <div class="feedback">
+        <p class="feedback left-column">&nbsp;</p>
+
+        <p><button class="feedback button-fb" type="submit">Đặt tạp chí</button> <button id="cancelEdit" class="feedback button-fb">Hủy</button></p>
+    </div>
+
+
+
+    @*<button type="submit" class="dnnPrimaryAction">Gửi ý kiến</button>
+        <a id="cancelEdit" href="#" class="dnnSecondaryAction">Hủy</a>*@
+</div>
+
+<script type="text/javascript">
+    /*globals jQuery, window, Sys */
+    (function ($, Sys) {
+
+
+        $(function () {
+            $('#cancelEdit').click(function () { dnnModal.closePopUp(false); });
+            dnnEditBasicSettings();
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+                dnnEditBasicSettings();
+            });
+        });
+
+    }(jQuery, window.Sys));
+</script>
+
+
+<script>
+    var onloadCallback = function () {
+        widgetId1 = grecaptcha.render('idCaptcha', {
+            'sitekey': 'Site-Key-',
+            'theme': 'light'
+        });
+    };
+</script>
+

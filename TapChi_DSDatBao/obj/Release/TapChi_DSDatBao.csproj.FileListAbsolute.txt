@@ -1,0 +1,7 @@
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSDatBao.dll.config
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSDatBao.dll
+C:\inetpub\wwwroot\dnn\bin\TapChi_DSDatBao.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSDatBao\obj\Release\Tapchi.Modules.TapChi_DSDatBao.App_LocalResources.Settings.resources
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSDatBao\obj\Release\TapChi_DSDatBao.csproj.GenerateResource.Cache
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSDatBao\obj\Release\TapChi_DSDatBao.dll
+C:\inetpub\wwwroot\dnn\DesktopModules\MVC\TapChi_DSDatBao\obj\Release\TapChi_DSDatBao.pdb
